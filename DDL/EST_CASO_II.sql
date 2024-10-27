@@ -31,25 +31,23 @@ AEROPORTO_LATITUDE float
 
 create table if not exists AERONAVES(
 
-AERONAVE_PREFIXO
-AERONAVE_MODELO
-AERONAVE_ANOFABR
-AERONAVE_CAPACIDADE
-AERONAVE_FABRICANTE
+AERONAVE_PREFIXO int primary key,
+AERONAVE_MODELO varchar(100) not null,
+AERONAVE_ANOFABR date not null,
+AERONAVE_CAPACIDADE int not null,
+AERONAVE_FABRICANTE varchar (50)
 );
 
 create table if not exists FUNCIONARIOS(
 
-FUNC_ID
-FUNC_FUNCAO
-FUNC_NOME
-FUNC_DATANASC
-FUNC_TELEFONE
+FUNC_ID int primary key,
+FUNC_FUNCAO varchar(20) not null,
+FUNC_NOME varchar(200) not null,
+FUNC_DATANASC date not null,
+FUNC_TELEFONE int
 
 );
 
-
-create table if not exists
 CREATE TABLE IF NOT EXISTS VOOS (
 VOO_CODIGO INT primary key not null,
 DATA_HORA_ORIGEM timestamp not null,

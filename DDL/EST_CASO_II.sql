@@ -73,10 +73,17 @@ create table if not exists EQUIPES (
 create table if not exists RESERVAS (
 
   PASS_CPF int,
-  VOO_CODIGO int,
-  constraint FK_R_PASSAGEIROS foreign key(PASS_CPF) references PASSAGEIROS(PASS_CPF),
-  constraint FK_R_VOOS foreign key(VOO_CODIGO) references VOOS(VOO_CODIGO)
+  VOO_CODIGO int
 );
 
+--
+-- Alter Tables
+--
+
 alter table PASSAGEIROS ADD PASS_CEP VARCHAR(9);
+
 alter table FUNCIONARIOS add FUNC_EMAIL VARCHAR(50);
+
+alter table RESERVAS ADD constraint FK_R_VOOS foreign key(VOO_CODIGO) references VOOS(VOO_CODIGO);
+
+alter table RESERVAS ADD constraint FK_R_PASSAGEIROS foreign key(PASS_CPF) references PASSAGEIROS(PASS_CPF);

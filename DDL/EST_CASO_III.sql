@@ -1,0 +1,75 @@
+DROP SCHEMA if exists EST_CASO_III;
+
+create schema EST_CASO_III;
+
+use EST_CASO_III;
+
+create table if not exists ENDERECO (
+
+END_NUMERO
+END_LOGRADOURO
+END_COMPLEMENTO
+END_CEP
+END_BAIRRO
+END_CIDADE
+END_ESTADO
+);
+
+create table if not exists TIPO_END (
+TIPO_END_COD
+TIPO_END_NOME
+TIPO_END_CLASS
+
+);
+
+create table if not exists TELEFONES (
+
+TEL_CODIGO
+TEL_TELEFONE
+
+);
+
+create table if not exists CLIENTES (
+
+CLI_CODIGO
+CLI_CNPJ
+CLI_RAZAOSOCI
+CLI_RAMO
+CLI_DATA_CAD
+CLI_PESSOA_CONT
+
+);
+
+create table if not exists EMPREGADOS (
+
+EMP_MATRICULA
+EMP_NOME
+EMP_CARGO
+EMP_SALARIO
+EMP_DATA_ADMI
+EMP_QUALI
+);
+
+create table if not exists EMPRESAS (
+
+EMPRESA_CNPJ
+EMPRESA_RAZAOSOCI
+EMPRESA_PESSOACONT
+);
+
+create table if not exists FORNECEDORES (
+
+FORN_CNPJ
+FORN_RAZAOSOCI
+FORN_PESSOACONT
+
+);
+
+create table if not exists ENCOMENDAS (
+
+ENC_CODIGO
+ENC_DATA_INC
+ENC_VALORTOTAL
+ENC_VALORDESCaccount
+
+);

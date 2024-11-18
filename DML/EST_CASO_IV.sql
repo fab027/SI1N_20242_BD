@@ -1,0 +1,135 @@
+USE EST_CASO_IV;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DELETE FROM ALUNOS;
+DELETE FROM AULAS;
+DELETE FROM INSTRUTORES;
+DELETE FROM MATRICULAS;
+DELETE FROM MODALIDADES;
+DELETE FROM PAGAMENTOS;
+DELETE FROM PLANOS_TREINAMENTO;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ALUNOS
+INSERT INTO ALUNOS (ALUNO_NOME, ALUNO_CPF, ALUNO_DATA_NASCIMENTO, ENDERECO_COMPLETO, ALUNO_TELEFONE, ALUNO_EMAIL) 
+VALUES ('João Silva', '123.456.789-00', '1990-05-15', 'Rua A, 123', '11987654321', 'joao.silva@example.com'),
+       ('Maria Oliveira', '987.654.321-00', '1985-10-20', 'Avenida B, 456', '11987651234', 'maria.oliveira@example.com'),
+       ('Carlos Santos', '456.789.123-00', '1995-12-30', 'Rua C, 789', '11987654322', 'carlos.santos@example.com'),
+       ('Ana Souza', '321.654.987-00', '1998-07-11', 'Rua D, 321', '11987654323', 'ana.souza@example.com'),
+       ('Lucas Pereira', '789.123.456-00', '1993-03-21', 'Rua E, 654', '11987654324', 'lucas.pereira@example.com');
+
+UPDATE ALUNOS 
+SET ENDERECO_COMPLETO = 'Rua Nova, 456'
+WHERE ALUNO_CPF = '123.456.789-00';
+
+UPDATE ALUNOS 
+SET ALUNO_TELEFONE = '11999999999'
+WHERE ALUNO_EMAIL LIKE '%example.com';
+
+
+
+-- INSTRUTORES
+
+INSERT INTO INSTRUTORES (INSTRUTOR_NOME, INSTRUTOR_CPF, INSTRUTOR_DATA_CONTRATACAO, INSTRUTOR_ESPECIALIDADE, INSTRUTOR_TELEFONE, EMAIL_CONTATO) 
+VALUES ('Pedro Lima', '987.321.654-00', '2020-01-10', 'Musculação', '11987654325', 'pedro.lima@example.com'),
+       ('Sofia Almeida', '654.987.321-00', '2019-06-15', 'Yoga', '11987654326', 'sofia.almeida@example.com'),
+       ('Ricardo Costa', '321.987.654-00', '2021-03-12', 'Pilates', '11987654327', 'ricardo.costa@example.com'),
+       ('Fernanda Rocha', '789.456.123-00', '2018-08-01', 'Natação', '11987654328', 'fernanda.rocha@example.com'),
+       ('Juliana Gomes', '123.789.456-00', '2022-09-20', 'Crossfit', '11987654329', 'juliana.gomes@example.com');
+
+UPDATE INSTRUTORES 
+SET INSTRUTOR_ESPECIALIDADE = 'Treinamento Funcional'
+WHERE INSTRUTOR_NOME = 'Pedro Lima';
+
+UPDATE INSTRUTORES 
+SET INSTRUTOR_TELEFONE = '11888888888'
+WHERE INSTRUTOR_DATA_CONTRATACAO < '2020-01-01';
+
+
+
+-- MODALIDADES
+INSERT INTO MODALIDADES (NOME_MODALIDADE, MODALIDADE_DESCRICAO) 
+VALUES ('Musculação', 'Treino com foco em hipertrofia e resistência muscular.'),
+       ('Yoga', 'Prática para equilíbrio entre corpo e mente.'),
+       ('Pilates', 'Exercícios para postura e flexibilidade.'),
+       ('Natação', 'Treinos para desenvolvimento cardiovascular.'),
+       ('Crossfit', 'Treinos de alta intensidade e força.');
+
+UPDATE MODALIDADES 
+SET MODALIDADE_DESCRICAO = 'Treinamento intensivo para resistência e força.'
+WHERE NOME_MODALIDADE = 'Crossfit';
+
+UPDATE MODALIDADES 
+SET NOME_MODALIDADE = 'Treino Funcional'
+WHERE MODALIDADE_DESCRICAO LIKE '%hipertrofia%';
+
+
+-- PLANOS_TREINAMENTO
+INSERT INTO PLANOS_TREINAMENTO (PLANO_DATA_INICIO, PLANO_DATA_FIM, DESCRICAO_OBJETIVO) 
+VALUES ('2024-01-01', '2024-03-31', 'Perda de peso'),
+       ('2024-02-01', '2024-04-30', 'Definição muscular'),
+       ('2024-03-01', '2024-05-31', 'Melhora da flexibilidade'),
+       ('2024-04-01', '2024-06-30', 'Aumento da resistência'),
+       ('2024-05-01', '2024-07-31', 'Preparação para competição');
+
+UPDATE PLANOS_TREINAMENTO 
+SET DESCRICAO_OBJETIVO = 'Manutenção da saúde'
+WHERE PLANO_ALUNO_ID = 3;
+
+UPDATE PLANOS_TREINAMENTO 
+SET PLANO_DATA_FIM = '2024-12-31'
+WHERE PLANO_DATA_FIM IS NULL;
+
+
+-- AULAS
+INSERT INTO AULAS (AULA_DATA_HORA, TOTAL_CAPACIDADE) 
+VALUES ('2024-11-18 10:00:00', 20),
+       ('2024-11-18 15:00:00', 15),
+       ('2024-11-19 08:00:00', 10),
+       ('2024-11-19 18:00:00', 25),
+       ('2024-11-20 07:00:00', 30);
+
+UPDATE AULAS 
+SET TOTAL_CAPACIDADE = 25
+WHERE AULA_ID = 1;
+
+UPDATE AULAS 
+SET AULA_DATA_HORA = '2024-11-19 16:00:00'
+WHERE AULA_MODALIDADE_ID = 2;
+
+
+-- PAGAMENTOS
+INSERT INTO PAGAMENTOS (PAGAMENTO_DATA, PAGAMENTO_VALOR, SITUACAO_PAGAMENTO) 
+VALUES ('2024-11-01', 150.00, 'pago'),
+       ('2024-11-01', 200.00, 'pago'),
+       ('2024-11-01', 120.00, 'pendente'),
+       ('2024-11-01', 250.00, 'pago'),
+       ('2024-11-01', 300.00, 'pendente');
+
+UPDATE PAGAMENTOS 
+SET SITUACAO_PAGAMENTO = 'pago'
+WHERE PAGAMENTO_ALUNO_ID = 5;
+
+UPDATE PAGAMENTOS 
+SET PAGAMENTO_VALOR = PAGAMENTO_VALOR * 1.1
+WHERE SITUACAO_PAGAMENTO = 'pendente';
+
+
+-- MATRICULAS
+INSERT INTO MATRICULAS (DATA_DE_MATRICULA) 
+VALUES ('2024-10-01'),
+       ('2024-10-01'),
+       ('2024-10-01'),
+       ('2024-10-01'),
+       ('2024-10-01');
+       
+UPDATE MATRICULAS 
+SET MATRICULA_MODALIDADE_ID = 3
+WHERE MATRICULA_ID = 2;
+
+UPDATE MATRICULAS 
+SET DATA_DE_MATRICULA = '2024-11-01'
+WHERE DATA_DE_MATRICULA = '2024-10-01';
+

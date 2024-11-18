@@ -1,0 +1,117 @@
+USE EST_CASO_III;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DELETE FROM REGISTRO_MANUTENCAO;
+DELETE FROM RECURSOS_ESPECIFICOS;
+DELETE FROM MAQUINAS;
+DELETE FROM FORNECEDORES_COMPONENTES;
+DELETE FROM COMPONENTES;
+DELETE FROM TIPOS_COMPONENTE;
+DELETE FROM ENCOMENDAS_PRODUTOS;
+DELETE FROM PRODUTOS;
+DELETE FROM ENCOMENDAS;
+DELETE FROM TELEFONES_FORNECEDORES;
+DELETE FROM FORNECEDORES;
+DELETE FROM TELEFONES_EMPRESAS;
+DELETE FROM EMPRESAS;
+DELETE FROM TELEFONES_EMPREGADOS;
+DELETE FROM EMPREGADOS;
+DELETE FROM TELEFONES_CLIENTES;
+DELETE FROM CLIENTES;
+DELETE FROM ENDERECO;
+DELETE FROM TIPO_END;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+USE EST_CASO_III;
+
+-- TABELA TIPO_END
+INSERT INTO TIPO_END (TIPO_END_COD, TIPO_END_NOME) 
+VALUES 
+(1, 'Residencial'),
+(2, 'Comercial'),
+(3, 'Industrial'),
+(4, 'Corporativo'),
+(5, 'Rural');
+
+-- TABELA ENDERECO
+INSERT INTO ENDERECO (END_ID, END_NUMERO, END_LOGRADOURO, END_COMPLEMENTO, END_CEP, END_BAIRRO, END_CIDADE, END_ESTADO, TipoEndereco_COD)
+VALUES 
+(1, 123, 'Rua Principal', 'Apto 1', 12345678, 'Centro', 'São Paulo', 'SP', 1),
+(2, 456, 'Av. Secundária', NULL, 87654321, 'Bairro Novo', 'Rio de Janeiro', 'RJ', 2),
+(3, 789, 'Praça Central', 'Bloco A', 11223344, 'Industrial', 'Belo Horizonte', 'MG', 3),
+(4, 101, 'Rua Terceira', NULL, 33445566, 'Zona Rural', 'Curitiba', 'PR', 5),
+(5, 202, 'Av. das Nações', 'Condomínio XYZ', 55667788, 'Jardim', 'Brasília', 'DF', 4);
+
+-- TABELA CLIENTES
+INSERT INTO CLIENTES (CLI_CODIGO, CLI_CNPJ, CLI_RAZAOSOCI, CLI_RAMO, CLI_DATA_CAD, CLI_CONTATO)
+VALUES 
+(1, '12.345.678/0001-90', 'Empresa Alpha', 'Tecnologia', '2022-01-01', 'Maria Silva'),
+(2, '98.765.432/0001-11', 'Empresa Beta', 'Construção', '2023-02-15', 'João Pereira'),
+(3, '21.123.456/0001-88', 'Empresa Gama', 'Alimentos', '2023-05-12', 'Paula Costa'),
+(4, '22.234.567/0001-77', 'Empresa Delta', 'Vestuário', '2024-03-08', 'Rafael Oliveira'),
+(5, '33.345.678/0001-66', 'Empresa Épsilon', 'Logística', '2021-07-20', 'Camila Martins');
+
+-- TABELA TELEFONES_CLIENTES
+INSERT INTO TELEFONES_CLIENTES (TC_ClienteCodigo, TC_Telefone)
+VALUES 
+(1, '(11) 99999-1111'),
+(2, '(21) 88888-2222'),
+(3, '(31) 77777-3333'),
+(4, '(41) 66666-4444'),
+(5, '(61) 55555-5555');
+
+-- TABELA EMPREGADOS
+INSERT INTO EMPREGADOS (EMP_MATRICULA, EMP_NOME, EMP_CARGO, EMP_SALARIO, EMP_DATA_ADMI, EMP_QUALI, EnderecoID)
+VALUES 
+(1, 'Carlos Souza', 'Gerente', 8500.00, '2021-05-10', 'MBA em Gestão', 1),
+(2, 'Ana Paula', 'Analista', 5500.00, '2022-09-20', 'Pós-graduação em TI', 2),
+(3, 'João Silva', 'Técnico', 4000.00, '2020-11-15', 'Curso Técnico em Eletrônica', 3),
+(4, 'Fernanda Lima', 'Engenheira', 10000.00, '2019-08-01', 'Engenharia de Software', 4),
+(5, 'Rafael Oliveira', 'Supervisor', 7000.00, '2023-01-10', 'Gestão de Projetos', 5);
+
+-- TABELA TELEFONES_EMPREGADOS
+INSERT INTO TELEFONES_EMPREGADOS (EmpregadoMatricula, TEmpregado_Telefone)
+VALUES 
+(1, '(11) 99999-3333'),
+(2, '(21) 88888-4444'),
+(3, '(31) 77777-6666'),
+(4, '(41) 66666-7777'),
+(5, '(61) 55555-8888');
+
+-- TABELA EMPRESAS
+INSERT INTO EMPRESAS (EMPRESA_CNPJ, EMPRESA_RAZAOSOCI, EMPRESA_PESSOACONT, EnderecoID)
+VALUES 
+('11.111.111/0001-11', 'Empresa Gamma', 'José Silva', 1),
+('22.222.222/0001-22', 'Empresa Delta', 'Fernanda Lima', 2),
+('33.333.333/0001-33', 'Empresa Beta', 'Ana Paula', 3),
+('44.444.444/0001-44', 'Empresa Alpha', 'Carlos Souza', 4),
+('55.555.555/0001-55', 'Empresa Epsilon', 'Paula Costa', 5);
+
+-- TABELA TELEFONES_EMPRESAS
+INSERT INTO TELEFONES_EMPRESAS (Empresa_CNPJ, TEmpresa_Telefone)
+VALUES 
+('11.111.111/0001-11', '(11) 77777-5555'),
+('22.222.222/0001-22', '(21) 66666-4444'),
+('33.333.333/0001-33', '(31) 55555-3333'),
+('44.444.444/0001-44', '(41) 44444-2222'),
+('55.555.555/0001-55', '(61) 33333-1111');
+
+-- TABELA FORNECEDORES
+INSERT INTO FORNECEDORES (FORN_CNPJ, FORN_RAZAOSOCI, FORN_PESSOACONT, EnderecoID)
+VALUES 
+('66.666.666/0001-66', 'Fornecedor X', 'João Lucas', 1),
+('77.777.777/0001-77', 'Fornecedor Y', 'Ana Carolina', 2),
+('88.888.888/0001-88', 'Fornecedor Z', 'Paulo Ricardo', 3),
+('99.999.999/0001-99', 'Fornecedor W', 'Fernanda Santos', 4),
+('10.101.010/0001-10', 'Fornecedor V', 'Carla Moreira', 5);
+
+-- TABELA TELEFONES_FORNECEDORES
+INSERT INTO TELEFONES_FORNECEDORES (FornecedorCNPJ, TForn_Telefone)
+VALUES 
+('66.666.666/0001-66', '(11) 11111-2222'),
+('77.777.777/0001-77', '(21) 22222-3333'),
+('88.888.888/0001-88', '(31) 33333-4444'),
+('99.999.999/0001-99', '(41) 44444-5555'),
+('10.101.010/0001-10', '(61) 55555-6666');
